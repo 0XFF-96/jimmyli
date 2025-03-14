@@ -56,7 +56,7 @@ function Navigation({parentToChild, modeChange}: any) {
     console.log(section)
     if (section === 'bs') {
       // 如果是 Best Practices 页面，使用路由导航
-      window.location.href = '/bs';
+      window.location.href = '/jimmyli/bs';
   } else {
       const expertiseElement = document.getElementById(section);
       if (expertiseElement) {

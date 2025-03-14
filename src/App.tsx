@@ -44,7 +44,6 @@ function App() {
                                 <Expertise />
                                 <Timeline />
                                 <Project />
-                                <Contact />
                             </>
                         } />
                         <Route path="/bs" element={<BestPractices />} />

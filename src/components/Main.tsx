@@ -23,10 +23,15 @@ function Main() {
             <a href="https://github.com/0XFF-96" target="_blank" rel="noreferrer"><GitHubIcon/></a>
             <a href="https://www.linkedin.com/in/jimmy-li-2b0a082b9/" target="_blank" rel="noreferrer"><LinkedInIcon/></a>
           </div>
+
+          <div style={{  bottom: '20px', right: '20px' }}>
+          {/* <Typography variant="h2" align="right">ABC</Typography> */}
+        </div>
         </div>
       </div>
     </div>
   );
 }
+
 
 export default Main;

@@ -7,10 +7,12 @@ import {
   Contact,
   Navigation,
   Footer,
+  FloatingNav,
 } from "./components";
 import FadeIn from './components/FadeIn';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BestPractices from './pages/BestPractices';
+import CV from './pages/CV';
 import './index.scss';
 
 
@@ -37,6 +39,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={
                             <>
+                            {/* <FloatingNav /> 添加浮动导航 */}
                                 <Main />
                                 <Expertise />
                                 <Timeline />
@@ -45,6 +48,7 @@ function App() {
                             </>
                         } />
                         <Route path="/bs" element={<BestPractices />} />
+                        <Route path="/cv" element={<CV />} />
                     </Routes>
                 </FadeIn>
                 <Footer />

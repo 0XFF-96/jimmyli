@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 
-const BestPractices = () => {
+const CV = () => {
     return (
         <div className="container">
         <h1>Ongoing</h1>
@@ -8,4 +8,4 @@ const BestPractices = () => {
     );
 };
 
-export default BestPractices;
+export default CV;

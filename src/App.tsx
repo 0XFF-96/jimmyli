@@ -30,7 +30,7 @@ function App() {
       }, []);
 
       return (
-        <Router>
+        <Router basename="/jimmyli">
             <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
                 <Navigation parentToChild={{ mode }} modeChange={handleModeChange} />
                 <FadeIn transitionDuration={700}>

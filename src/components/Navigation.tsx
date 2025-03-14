@@ -17,7 +17,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 
 const drawerWidth = 240;
-const navItems = [['Expertise', 'expertise'], ['History', 'history'], ['Projects', 'projects'], ['Contact', 'contact']];
+const navItems = [
+  ['Expertise', 'expertise'],
+  ['History', 'history'],
+  ['Projects', 'projects'],
+  ['Contact', 'contact'],
+  ['Best Practices', 'bs'],  // 添加 Best Practices 页面
+];
 
 function Navigation({parentToChild, modeChange}: any) {
 
@@ -48,13 +54,17 @@ function Navigation({parentToChild, modeChange}: any) {
 
   const scrollToSection = (section: string) => {
     console.log(section)
-    const expertiseElement = document.getElementById(section);
-    if (expertiseElement) {
-      expertiseElement.scrollIntoView({ behavior: 'smooth' });
-      console.log('Scrolling to:', expertiseElement);  // Debugging: Ensure the element is found
-    } else {
-      console.error('Element with id "expertise" not found');  // Debugging: Log error if element is not found
-    }
+    if (section === 'bs') {
+      // 如果是 Best Practices 页面，使用路由导航
+      window.location.href = '/bs';
+  } else {
+      const expertiseElement = document.getElementById(section);
+      if (expertiseElement) {
+          expertiseElement.scrollIntoView({ behavior: 'smooth' });
+      } else {
+          console.error(`Element with id "${section}" not found`);
+      }
+  }
   };
 
   const drawer = (

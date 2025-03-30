@@ -58,7 +58,7 @@ function Navigation({parentToChild, modeChange}: any) {
     console.log(section)
     if (section === 'bs') {
       // 如果是 Best Practices 页面，使用路由导航
-      window.location.href = '/jimmyli/bs';
+      window.location.href = 'jimmyli/bs';
   } else if (section === 'cv') {
       // 如果是 CV 页面，使用路由导航
       window.location.href = '/jimmyli/cv';

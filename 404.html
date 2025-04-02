@@ -13,8 +13,13 @@
     <script src="%PUBLIC_URL%/index.js"></script>
 
     <script>
-      // 重定向到 index.html
-      window.location.href = '/jimmyli/';
-    </script>
+        // Redirect based on the current URL
+        const currentPath = window.location.pathname;
+        if (currentPath !== '/') {
+            window.location.href = '/jimmyli' + currentPath;
+        } else {
+            window.location.href = '/jimmyli/';
+        }
+      </script>
 </body>
 </html>

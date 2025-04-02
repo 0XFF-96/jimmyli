@@ -5,7 +5,7 @@ const CV = () => {
     const [skills, setSkills] = useState([]);
 
     return (
-      <div className="container" style={{ padding: '20px', backgroundColor: '#121212', color: '#ffffff' }}>
+      <div className="container" id="cv" style={{ padding: '20px', backgroundColor: '#121212', color: '#ffffff' }}>
         <div className="cv">
 <h1 style={{ textAlign: 'center' }} >Curriculum Vitae</h1>
     <ul>

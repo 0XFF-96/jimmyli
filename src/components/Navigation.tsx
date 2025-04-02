@@ -54,24 +54,35 @@ function Navigation({parentToChild, modeChange}: any) {
     };
   }, []);
 
+  // const scrollToSection = (section: string) => {
+  //   console.log(section)
+  //   if (section === 'bs') {
+  //     // 如果是 Best Practices 页面，使用路由导航
+  //     window.location.href = 'jimmyli/bs';
+  // } else if (section === 'cv') {
+  //     // 如果是 CV 页面，使用路由导航
+  //     window.location.href = '/jimmyli/cv';
+  // } else if (section === 'home') { 
+  //   window.location.href = '/jimmyli';
+  // }else {
+  //     const expertiseElement = document.getElementById(section);
+  //     if (expertiseElement) {
+  //         expertiseElement.scrollIntoView({ behavior: 'smooth' });
+  //     } else {
+  //         console.error(`Element with id "${section}" not found`);
+  //     }
+  // }
+  // };
+
+
   const scrollToSection = (section: string) => {
     console.log(section)
-    if (section === 'bs') {
-      // 如果是 Best Practices 页面，使用路由导航
-      window.location.href = 'jimmyli/bs';
-  } else if (section === 'cv') {
-      // 如果是 CV 页面，使用路由导航
-      window.location.href = '/jimmyli/cv';
-  } else if (section === 'home') { 
-    window.location.href = '/jimmyli';
-  }else {
-      const expertiseElement = document.getElementById(section);
-      if (expertiseElement) {
-          expertiseElement.scrollIntoView({ behavior: 'smooth' });
-      } else {
-          console.error(`Element with id "${section}" not found`);
-      }
-  }
+    const expertiseElement = document.getElementById(section);
+    if (expertiseElement) {
+        expertiseElement.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.error(`Element with id "${section}" not found`);
+    }
   };
 
   const currentPage = window.location.pathname; // 获取当前页面路径
@@ -81,9 +92,6 @@ function Navigation({parentToChild, modeChange}: any) {
       ['Best Practices', 'bs'],
       ['CV', 'cv'],
       ['Expertise', 'expertise'],
-      ['History', 'history'],
-      ['Projects', 'projects'],
-      ['Contact', 'contact']
     ] 
   : [
     ['Home', 'home'],

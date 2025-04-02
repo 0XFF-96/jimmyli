@@ -41,13 +41,12 @@ function App() {
                             <>
                             {/* <FloatingNav /> 添加浮动导航 */}
                                 <Main />
+                                <BestPractices />
                                 <Expertise />
                                 <Timeline />
-                                <Project />
+                                <CV />
                             </>
                         } />
-                        <Route path="/bs" element={<BestPractices />} />
-                        <Route path="/cv" element={<CV />} />
                     </Routes>
                 </FadeIn>
                 <Footer />

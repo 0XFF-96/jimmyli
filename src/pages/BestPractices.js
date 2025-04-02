@@ -39,7 +39,7 @@ const BestPractices = () => {
     };
 
     return (
-        <div className="container" style={{ padding: '20px', backgroundColor: '#121212', color: '#ffffff' }}>
+        <div className="container" id="bs" style={{ padding: '20px', backgroundColor: '#121212', color: '#ffffff' }}>
             <h1 style={{ textAlign: 'center' }}>Best Practices</h1>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {bestPracticesList.map((practice) => (

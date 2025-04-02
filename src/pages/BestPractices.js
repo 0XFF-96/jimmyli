@@ -5,7 +5,15 @@ const bestPracticesList = [
     { title: 'Use Semantic HTML', explanation: 'Using semantic HTML improves accessibility and SEO.' },
     { title: 'Optimize Images', explanation: 'Optimizing images reduces load time and improves user experience.' },
     { title: 'Implement Responsive Design', explanation: 'Responsive design ensures your site works on all devices.' },
-    // Add more best practices as needed
+    { title: 'Consistent Formatting', explanation: 'Use a code formatter like Prettier to ensure consistent code style across your project.' },
+    { title: 'Declare a Doctype', explanation: 'Always start your HTML documents with a <!DOCTYPE html> declaration to ensure proper rendering.' },
+    { title: 'Meaningful Title Tags', explanation: 'Use descriptive and relevant title tags for each page to improve SEO and user experience.' },
+    { title: 'Descriptive Meta Tags', explanation: 'Include meta tags like description, keywords, and author to describe the content of your pages.' },
+    { title: 'Minimize HTTP Requests', explanation: 'Combine CSS and JavaScript files where possible to reduce the number of HTTP requests and improve performance.' },
+    { title: 'Use External Stylesheets and Scripts', explanation: 'Link to external stylesheets and scripts to improve loading times and make maintenance easier.' },
+    { title: 'Use Version Control', explanation: 'Use version control systems like Git to track changes, collaborate effectively, and maintain code history.' },
+    { title: 'Comment Your Code', explanation: 'Write meaningful comments to explain complex logic and important sections of code.' },
+    { title: 'Error Handling', explanation: 'Implement proper error handling to manage unexpected behavior gracefully and improve user experience.' },
 ];
 
 const BestPractices = () => {
@@ -32,10 +40,46 @@ const BestPractices = () => {
         }
     }, [userSelections]);
 
-    const fetchRandomAnimal = async () => {
-        const response = await fetch('https://api.thecatapi.com/v1/images/search'); // Example API
-        const data = await response.json();
-        alert(`Congratulations! You have met the criteria. Here is a cute animal: ${data[0].url}`);
+    const fetchRandomAnimal = () => {
+        fetch('https://nekos.best/api/v2/neko')
+            .then(response => response.json())
+            .then(json => {
+                const imageUrl = json.results[0].url; // Get the image URL
+                alert('Congratulations! You have met the criteria. Here is the rewards !!!'); // Show the message in an alert
+                showImageInModal(imageUrl); // Show the image in a modal
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    };
+
+    const showImageInModal = (imageUrl) => {
+        const modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        modal.style.display = 'flex';
+        modal.style.alignItems = 'center';
+        modal.style.justifyContent = 'center';
+        modal.style.zIndex = '1000';
+
+        const message = document.createElement('div');
+        message.style.color = 'white'; // Text color
+        message.style.marginBottom = '10px'; // Space between text and image
+
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.style.maxWidth = '90%';
+        img.style.maxHeight = '90%';
+
+        modal.appendChild(message); // Add message to modal
+        modal.appendChild(img); // Add image to modal
+        document.body.appendChild(modal);
+
+        modal.addEventListener('click', () => {
+            document.body.removeChild(modal); // Remove modal on click
+        });
     };
 
     return (

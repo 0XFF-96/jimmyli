@@ -11,7 +11,7 @@ function Footer() {
         <a href="https://www.linkedin.com/in/yujisato/" target="_blank" rel="noreferrer"><LinkedInIcon/></a>
       </div>
       <p>A portfolio designed <a href="https://github.com/yujisatojr/react-portfolio-template" target="_blank" rel="noreferrer">Yuji Sato</a></p>
-      <p>A portfolio modified By <a href="https://github.com/0XFF-96" target="_blank" rel="noreferrer">Jimmy Li</a> with 💜</p>
+      <p>modified By <a href="https://github.com/0XFF-96" target="_blank" rel="noreferrer">Jimmy Li</a> with 💜</p>
 
     </footer>
   );

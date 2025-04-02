@@ -39,26 +39,29 @@ const BestPractices = () => {
     };
 
     return (
-        <div className="container">
-            <h1>Best Practices</h1>
-            <ul>
+        <div className="container" style={{ padding: '20px', backgroundColor: '#121212', color: '#ffffff' }}>
+            <h1 style={{ textAlign: 'center' }}>Best Practices</h1>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {bestPracticesList.map((practice) => (
-                    <li key={practice.title}>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={userSelections[practice.title] || false}
-                                onChange={() => handleCheckboxChange(practice.title)}
-                            />
-                            {practice.title}: {practice.explanation}
-                        </label>
+                    <li key={practice.title} style={{ margin: '10px 0' }}>
+                        <div style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '15px', boxShadow: '0 2px 5px rgba(0,0,0,0.3)', backgroundColor: '#1e1e1e', color: '#ffffff' }}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={userSelections[practice.title] || false}
+                                    onChange={() => handleCheckboxChange(practice.title)}
+                                    style={{ accentColor: '#ffffff' }}
+                                />
+                                <strong>{practice.title}</strong>: {practice.explanation}
+                            </label>
+                        </div>
                     </li>
                 ))}
             </ul>
-            <div>
-                <h2>Summary</h2>
-                <p>You have met {successCount} out of {bestPracticesList.length} best practices.</p>
-                <p>Success Criteria: Meet at least {successCriteria} best practices.</p>
+            <div className="summary-box" style={{ position: 'fixed', bottom: '20px', right: '20px', backgroundColor: '#1e1e1e', border: '1px solid #ccc', padding: '15px', borderRadius: '5px', boxShadow: '0 2px 10px rgba(0,0,0,0.3)', color: '#ffffff' }}>
+                <h2 style={{ margin: '0 0 10px 0' }}>Summary</h2>
+                <p>You have met <strong>{successCount}</strong> out of <strong>{bestPracticesList.length}</strong> best practices.</p>
+                <p>Success Criteria: Meet at least <strong>{successCriteria}</strong> best practices.</p>
             </div>
         </div>
     );

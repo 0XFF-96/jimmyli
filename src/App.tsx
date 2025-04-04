@@ -7,9 +7,14 @@ import {
   Contact,
   Navigation,
   Footer,
+  FloatingNav,
 } from "./components";
 import FadeIn from './components/FadeIn';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import BestPractices from './pages/BestPractices';
+import CV from './pages/CV';
 import './index.scss';
+
 
 function App() {
     const [mode, setMode] = useState<string>('dark');
@@ -26,18 +31,27 @@ function App() {
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
       }, []);
 
-    return (
-    <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
-        <Navigation parentToChild={{mode}} modeChange={handleModeChange}/>
-        <FadeIn transitionDuration={700}>
-            <Main/>
-            <Expertise/>
-            <Timeline/>
-            <Project/>
-            <Contact/>
-        </FadeIn>
-        <Footer />
-    </div>
+      return (
+        <Router basename="/jimmyli">
+            <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
+                <Navigation parentToChild={{ mode }} modeChange={handleModeChange} />
+                <FadeIn transitionDuration={700}>
+                    <Routes>
+                        <Route path="/" element={
+                            <>
+                            {/* <FloatingNav /> 添加浮动导航 */}
+                                <Main />
+                                <BestPractices />
+                                <Expertise />
+                                <Timeline />
+                                <CV />
+                            </>
+                        } />
+                    </Routes>
+                </FadeIn>
+                <Footer />
+            </div>
+        </Router>
     );
 }
 

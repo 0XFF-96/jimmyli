@@ -17,7 +17,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 
 const drawerWidth = 240;
-const navItems = [['Expertise', 'expertise'], ['History', 'history'], ['Projects', 'projects'], ['Contact', 'contact']];
+const navItems = [
+  ['Home', 'home'],
+  ['Expertise', 'expertise'],
+  ['History', 'history'],
+  ['Projects', 'projects'],
+  ['Contact', 'contact'],
+  ['Best Practices', 'bs'],  // 添加 Best Practices 页面
+  ['CV', 'cv'],  // 添加 CV 页面
+];
 
 function Navigation({parentToChild, modeChange}: any) {
 
@@ -46,23 +54,57 @@ function Navigation({parentToChild, modeChange}: any) {
     };
   }, []);
 
+  // const scrollToSection = (section: string) => {
+  //   console.log(section)
+  //   if (section === 'bs') {
+  //     // 如果是 Best Practices 页面，使用路由导航
+  //     window.location.href = 'jimmyli/bs';
+  // } else if (section === 'cv') {
+  //     // 如果是 CV 页面，使用路由导航
+  //     window.location.href = '/jimmyli/cv';
+  // } else if (section === 'home') { 
+  //   window.location.href = '/jimmyli';
+  // }else {
+  //     const expertiseElement = document.getElementById(section);
+  //     if (expertiseElement) {
+  //         expertiseElement.scrollIntoView({ behavior: 'smooth' });
+  //     } else {
+  //         console.error(`Element with id "${section}" not found`);
+  //     }
+  // }
+  // };
+
+
   const scrollToSection = (section: string) => {
     console.log(section)
     const expertiseElement = document.getElementById(section);
     if (expertiseElement) {
-      expertiseElement.scrollIntoView({ behavior: 'smooth' });
-      console.log('Scrolling to:', expertiseElement);  // Debugging: Ensure the element is found
+        expertiseElement.scrollIntoView({ behavior: 'smooth' });
     } else {
-      console.error('Element with id "expertise" not found');  // Debugging: Log error if element is not found
+        console.error(`Element with id "${section}" not found`);
     }
   };
+
+  const currentPage = window.location.pathname; // 获取当前页面路径
+
+  const navToRender = currentPage === '/jimmyli' 
+  ? [
+      ['Best Practices', 'bs'],
+      ['CV', 'cv'],
+      ['Expertise', 'expertise'],
+    ] 
+  : [
+    ['Home', 'home'],
+      ['Best Practices', 'bs'],
+      ['CV', 'cv'],
+    ];
 
   const drawer = (
     <Box className="navigation-bar-responsive" onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <p className="mobile-menu-top"><ListIcon/>Menu</p>
       <Divider />
       <List>
-        {navItems.map((item) => (
+        {navToRender.map((item) => (
           <ListItem key={item[0]} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }} onClick={() => scrollToSection(item[1])}>
               <ListItemText primary={item[0]} />
@@ -93,7 +135,7 @@ function Navigation({parentToChild, modeChange}: any) {
             <DarkModeIcon onClick={() => modeChange()}/>
           )}
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
+            {navToRender.map((item) => (
               <Button key={item[0]} onClick={() => scrollToSection(item[1])} sx={{ color: '#fff' }}>
                 {item[0]}
               </Button>

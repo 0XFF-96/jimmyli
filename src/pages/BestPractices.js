@@ -16,6 +16,55 @@ const bestPracticesList = [
     { title: 'Error Handling', explanation: 'Implement proper error handling to manage unexpected behavior gracefully and improve user experience.' },
 ];
 
+const CollapsibleGroup = ({ title, practices, userSelections, handleCheckboxChange }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+        <div style={{ marginBottom: '20px' }}>
+            <h2 style={{ color: '#ffffff', margin: '10px 0' }}>{title}</h2>
+            <button onClick={() => setIsOpen(!isOpen)} style={{ margin: '10px 0', backgroundColor: '#4CAF50', color: 'white', padding: '10px', border: 'none', borderRadius: '5px' }}>
+                {isOpen ? 'Collapse' : 'Expand'} {title}
+            </button>
+            {isOpen && (
+                <ul style={{ 
+                    listStyleType: 'none', 
+                    padding: 0, 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'flex-start', 
+                    width: '100%' 
+                }}>
+                    {practices.map((practice) => (
+                        <li key={practice.title} style={{ margin: '10px 0' }}>
+                            <div style={{ 
+                                    width: '100%',               // ✅ 重点1：固定卡片宽度
+                                    boxSizing: 'border-box',     // ✅ 重点2：保证 padding 不会撑大卡片
+                                border: '1px solid #ccc', 
+                                borderRadius: '8px', 
+                                padding: '15px', 
+                                boxShadow: '0 4px 10px rgba(0,0,0,0.2)', 
+                                backgroundColor: '#1e1e1e', 
+                                color: '#ffffff',
+                                transition: 'transform 0.2s', // 添加动画效果
+                            }}>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <input
+                                        type="checkbox"
+                                        checked={userSelections[practice.title] || false}
+                                        onChange={() => handleCheckboxChange(practice.title)}
+                                        style={{ accentColor: '#ffffff', verticalAlign: 'middle' }}
+                                    />
+                                    <strong>{practice.title}</strong>: {practice.explanation}
+                                </label>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};
+
 const BestPractices = () => {
     const [userSelections, setUserSelections] = useState({});
     const [successCount, setSuccessCount] = useState(0);
@@ -82,26 +131,17 @@ const BestPractices = () => {
         });
     };
 
+    const groupedPractices = [];
+    for (let i = 0; i < bestPracticesList.length; i += 4) {
+        groupedPractices.push(bestPracticesList.slice(i, i + 4));
+    }
+
     return (
         <div className="container" id="bs" style={{ padding: '20px', backgroundColor: '#121212', color: '#ffffff' }}>
             <h1 style={{ textAlign: 'center' }}>Best Practices</h1>
-            <ul style={{ listStyleType: 'none', padding: 0 }}>
-                {bestPracticesList.map((practice) => (
-                    <li key={practice.title} style={{ margin: '10px 0' }}>
-                        <div style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '15px', boxShadow: '0 2px 5px rgba(0,0,0,0.3)', backgroundColor: '#1e1e1e', color: '#ffffff' }}>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={userSelections[practice.title] || false}
-                                    onChange={() => handleCheckboxChange(practice.title)}
-                                    style={{ accentColor: '#ffffff' }}
-                                />
-                                <strong>{practice.title}</strong>: {practice.explanation}
-                            </label>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+            {groupedPractices.map((group, index) => (
+                <CollapsibleGroup key={index} title={`Best Practices Group ${index + 1}`} practices={group} userSelections={userSelections} handleCheckboxChange={handleCheckboxChange} />
+            ))}
             <div className="summary-box" style={{ position: 'fixed', bottom: '20px', right: '20px', backgroundColor: '#1e1e1e', border: '1px solid #ccc', padding: '15px', borderRadius: '5px', boxShadow: '0 2px 10px rgba(0,0,0,0.3)', color: '#ffffff' }}>
                 <h2 style={{ margin: '0 0 10px 0' }}>Summary</h2>
                 <p>You have met <strong>{successCount}</strong> out of <strong>{bestPracticesList.length}</strong> best practices.</p>
